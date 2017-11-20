@@ -1,12 +1,14 @@
 <h2> Log In </h2>
 
+<% if (typeof message != "undefined") { %>
+   <div class="error-message"><%= message %></div>
+ <% } %>
 
-
-<form action="/login" method="post">
+<form action="/auth/login" method="post">
   <div>
-    <label for="email-input"> Email </label>
-    <input type="email" name="email" id="email-input"
-      placeholder="jon@wannabeastark.com">
+    <label for="user-input"> Username </label>
+    <input type="text" name="username" id="user-input"
+      placeholder="Nombre">
   </div>
 
   <div>

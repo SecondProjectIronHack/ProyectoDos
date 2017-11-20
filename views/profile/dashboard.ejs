@@ -1,0 +1,16 @@
+Private page
+<% if (user) { %>
+  <div>
+    <a href="/">Index</a>
+  </div>
+<% } %>
+
+<h1>Hey this is your private profile <%=user.name%></h1>
+
+<p></p>
+<p>
+  Log out
+  <a href="/logout">
+      Log out
+  </a>
+</p>

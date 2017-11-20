@@ -1,5 +1,7 @@
 <h2> Sign Up </h2>
-
+<% if (typeof message != "undefined") { %>
+   <div class="error-message"><%= message %></div>
+ <% } %>
 <form action="/auth/signup" method="POST">
   <div>
     <label for="username"> Name </label>
