@@ -1,0 +1,42 @@
+<h2> Sign Up </h2>
+
+<h1> <%= err %> </h1>
+
+<form action="/signup" method="POST">
+  <div>
+    <label for="name-input"> Name </label>
+    <input type="text" name="name" id="name-input"
+      placeholder="Jon Snow">
+  </div>
+
+  <div>
+    <label for="email-input"> Email </label>
+    <input type="email" name="email" id="email-input"
+      placeholder="jon@wannabeastark.com">
+  </div>
+
+  <div>
+    <label for="password-input"> Password </label>
+    <input type="password" name="password" id="password-input"
+      placeholder="••••••••••••">
+  </div>
+
+
+
+  <!-- <div>
+    <h3>Upload your photo</h3>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="photo">
+      <input type="submit" value="Save">
+    </form>
+  </div> -->
+
+  <button> Create New Account </button>
+</form>
+
+<p>
+  Already have an account?
+  <a href="/login">
+    Log in.
+  </a>
+</p>
