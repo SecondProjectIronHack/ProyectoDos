@@ -1,23 +1,21 @@
 <h2> Sign Up </h2>
 
-<h1> <%= err %> </h1>
-
-<form action="/signup" method="POST">
+<form action="/auth/signup" method="POST">
   <div>
-    <label for="name-input"> Name </label>
-    <input type="text" name="name" id="name-input"
+    <label for="username"> Name </label>
+    <input type="text" name="username" id="name"
       placeholder="Jon Snow">
   </div>
 
   <div>
-    <label for="email-input"> Email </label>
-    <input type="email" name="email" id="email-input"
+    <label for="email"> Email </label>
+    <input type="email" name="email" id="email"
       placeholder="jon@wannabeastark.com">
   </div>
 
   <div>
-    <label for="password-input"> Password </label>
-    <input type="password" name="password" id="password-input"
+    <label for="password"> Password </label>
+    <input type="password" name="password" id="password"
       placeholder="••••••••••••">
   </div>
 
@@ -31,12 +29,12 @@
     </form>
   </div> -->
 
-  <button> Create New Account </button>
+  <button type="submit">Signup</button>
 </form>
 
 <p>
   Already have an account?
-  <a href="/login">
+  <a href="/auth/login">
     Log in.
   </a>
 </p>

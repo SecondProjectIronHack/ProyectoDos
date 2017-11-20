@@ -13,7 +13,7 @@ const index = require('./routes/index');
 const authRoute = require('./routes/auth');
 const flash = require('connect-flash');
 
-const dbURL = "mongodb://localhost/awesome-project";
+const dbURL = "mongodb://localhost/awesome";
 mongoose.connect(dbURL).then(() => {
   debug(`Connected to ${dbURL}`);
 });
@@ -24,6 +24,7 @@ app.set('view engine', 'ejs');
 app.set('layout', 'main-layout');
 
 // default value for title local
+require('./passport')(app);
 app.locals.title = 'Express - Generated with IronGenerator';
 
 // uncomment after placing your favicon in /public
@@ -42,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/auth', authRoute);
-require('./passport')(app);
+
 
 
 

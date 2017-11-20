@@ -5,27 +5,31 @@ const bcrypt = require('bcrypt');
 
 passport.use('local-signup', new LocalStrategy(
   { passReqToCallback: true },
-  (req, username, password, next) => {
+  (req, username, email, password, done) => {
+    console.log("ARRIBA", done)
     process.nextTick(() => {
         User.findOne({
-            'name': name
+            'email': email
         }, (err, user) => {
-            if (err){ return next(err); }
+            if (err){
+              return done(err);
+            }
 
             if (user) {
-                return next(null, false);
+                return done(null, false);
             } else {
-                const {email, password } = req.body;
+                const {username, email, password } = req.body;
                 const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                 const newUser = new User({
-                  name,
+                  name : username,
                   email,
                   password: hashPass
                 });
-
                 newUser.save((err) => {
-                    if (err){ next(err); }
-                    return next(null, newUser);
+                  console.log("ERROR", err);
+                  console.log("NEXT", next)
+                  if (err){ return done(err); }
+                  return done(null, newUser);
                 });
             }
         });
