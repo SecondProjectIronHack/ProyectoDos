@@ -7,12 +7,11 @@ const restaurantSchema = new Schema({
   website: {type: String, require: true},
   telephone: {type: String, require: true},
   type: {type: String, require: true},
-  rating:
-
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
+  rating: { type: Schema.Types.ObjectId, ref: 'Rating', required: true },
+  // timestamps: {
+  //   createdAt: 'created_at',
+  //   updatedAt: 'updated_at'
+  // }
 })
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema)

@@ -13,6 +13,7 @@ const index = require('./routes/index');
 const authRoute = require('./routes/auth');
 const restaurantRoute = require('./routes/restaurant');
 const profileRoute = require('./routes/profile');
+const ratingRoute = require('./routes/rating');
 const flash = require('connect-flash');
 
 const dbURL = "mongodb://localhost/awesome";
@@ -66,6 +67,7 @@ app.use('/', index);
 app.use('/auth', authRoute);
 app.use('/profile', profileRoute);
 app.use('/restaurant', restaurantRoute);
+app.use('/rating', ratingRoute);
 
 
 // catch 404 and forward to error handler
