@@ -13,7 +13,9 @@ const index = require('./routes/index');
 const authRoute = require('./routes/auth');
 const profileRoute = require('./routes/profile');
 const flash = require('connect-flash');
-
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'AIzaSyCE3wzxrBK16zMljFyGq294DTotwbl85TY'
+});
 const dbURL = "mongodb://localhost/awesome";
 mongoose.connect(dbURL).then(() => {
   debug(`Connected to ${dbURL}`);
