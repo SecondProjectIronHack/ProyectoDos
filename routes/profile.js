@@ -6,6 +6,7 @@ var router = express.Router();
 
 router.get("/", ensureLoggedIn(), (req, res) => {
   res.render("profile/dashboard", { user: req.user });
+
 });
 
 router.get('/:id/edit', (req, res, next) => {

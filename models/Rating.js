@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ratingSchema = new Schema({
+  restaurant: {type: Schema.Types.ObjectId, ref: 'Restaurant', required: true}
   food: {type: Number,required: true},
   price: {type: Number,required: true},
   ambience: {type: Number,required: true},

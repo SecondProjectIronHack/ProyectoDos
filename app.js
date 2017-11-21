@@ -11,11 +11,10 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 const index = require('./routes/index');
 const authRoute = require('./routes/auth');
+const restaurantRoute = require('./routes/restaurant');
 const profileRoute = require('./routes/profile');
 const flash = require('connect-flash');
-var googleMapsClient = require('@google/maps').createClient({
-  key: 'AIzaSyCE3wzxrBK16zMljFyGq294DTotwbl85TY'
-});
+
 const dbURL = "mongodb://localhost/awesome";
 mongoose.connect(dbURL).then(() => {
   debug(`Connected to ${dbURL}`);
@@ -66,6 +65,8 @@ app.use((req, res, next) => {
 app.use('/', index);
 app.use('/auth', authRoute);
 app.use('/profile', profileRoute);
+app.use('/restaurant', restaurantRoute);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
