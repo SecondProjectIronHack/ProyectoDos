@@ -9,24 +9,24 @@ var router = express.Router();
 //No funciona el primer get no se por que--> dice que la vista no existe
 //Hay que revisar el modelo de restaurante a ver si nos queremos traer mas informacioN!
 
-router.get('/search', (req, res, next) => {
-  res.render('/restaurants/search-restaurant');
+router.get('/search', ensureLoggedIn(), (req, res, next) => {
+  res.render('restaurants/search-restaurant');
 });
 
-router.post('/search', (req, res, next) => {
+router.post('/search', ensureLoggedIn(), (req, res, next) => {
   const newRestaurant = new Restaurant({
     name: req.body.name,
     address: req.body.address,
     website: req.body.website,
-    telephone: req.body.telephone,
     type: req.body.type,
     rating: req.body.rating,
   });
-
-newRestaurant.save().then(createdRestaurant => {
+  console.log(newRestaurant);
+  console.log(req.body);
+  newRestaurant.save().then(createdRestaurant => {
     // res.redirect(`/${createdRestaurant._id}`);
     res.redirect('/profile');
-  }).catch(e => res.render('/search', {
+  }).catch(e => res.render('restaurants/search-restaurant', {
     error: 'Something went wrong'
   }));
 });

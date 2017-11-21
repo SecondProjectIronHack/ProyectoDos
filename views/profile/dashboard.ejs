@@ -6,7 +6,14 @@ Private page
 <% } %>
 
 <h1>Hey there <%=user.name%>!</h1>
-<button name="button"><a href="profile/<%= user._id %>/edit/">Edit Profile</a></button>
-<button name="button"><a href="/auth/logout">Log out</a></button>
-<input id="idRest" type="text" name="" value="">
+<div class="container">
+  <input id="idRest" type="text" name="" value="">
+  <a class="btn" href="profile/<%= user._id %>/edit/">Edit Profile</a>
+  <a class="btn" href="/auth/logout">Log out</a>
+</div>
+<ul>
+<% for(var i = 0; i < restaurants.length; i++) { %>
+  <li class="restaurant"><span><%= restaurants[i].name %></span><input type="range" min="0" max="5" step="1"></input></li>
+<% } %>
+</ul>
 <br>

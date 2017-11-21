@@ -1,12 +1,18 @@
 var express = require('express');
 const passport = require('passport');
 const User = require('../models/User');
+const Restaurant = require('../models/Restaurant');
+
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 var router = express.Router();
 
 router.get("/", ensureLoggedIn(), (req, res) => {
-  res.render("profile/dashboard", { user: req.user });
-
+  Restaurant.find({}, (err, restaurants) => {
+    res.render("profile/dashboard", {
+      user: req.user,
+      restaurants: restaurants
+     });
+  });
 });
 
 router.get('/:id/edit', (req, res, next) => {

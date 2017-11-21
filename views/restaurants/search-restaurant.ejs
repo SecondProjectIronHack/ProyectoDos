@@ -1,12 +1,10 @@
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <div id="map"></div>
 
-<form action="/restaurant/search" method="POST">
+<form action="/restaurant/search" method="POST" id="formRest">
   <input  id="idRest" name="place_id" placeholder="place_id" style="visibility:hidden">
   <input  id="nameRest" name="name" placeholder="Longitude" style="visibility:hidden">
   <input  id="addressRest" name="address" placeholder="Address" style="visibility:hidden">
-  <input  id="geometryRest" name="geometry" placeholder="Geometry" style="visibility:hidden">
+  <input  id="typeRest" name="type" placeholder="Type" style="visibility:hidden">
   <input  id="webRest" name="website" placeholder="website" style="visibility:hidden">
 </form>
-
-<button type="submit" name="button"> <a href="#"></a>Next</button>

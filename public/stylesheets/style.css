@@ -1,5 +1,6 @@
 body {
-  padding: 50px;
+  padding: 0;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -42,3 +43,81 @@ a {
       #map #infowindow-content {
         display: inline;
       }
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  background: #6f1c1c;
+  color: white;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.footer {
+  background: #333;
+  color: white;
+  width: 100%;
+  height: 40px;
+}
+.main {
+  padding: 10px;
+  min-height: calc(100vh - 100px);
+}
+
+.rate {
+  padding: 10px;
+  background: #333;
+  color: white;
+  border-radius: 2px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.controls {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  margin-bottom: 3px;
+  padding: 25px 10px;
+  color: gray;
+  box-shadow: 0px 0px 1px 0px #736f6f;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.btn {
+  padding: 10px;
+  background: #333;
+  color: white;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+#idRest {
+  padding: 10px;
+  flex: 1;
+}
+.restaurant {
+  padding: 10px;
+  list-style: none;
+  border-bottom: 1px solid lightgray;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}

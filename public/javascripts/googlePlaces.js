@@ -4,6 +4,10 @@ var myAddress;
 var myWebiste;
 var myGeometry;
 
+function rate() {
+  document.querySelector('#formRest').submit();
+}
+
 function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -33.8688, lng: 151.2195},
@@ -14,7 +18,6 @@ function initAutocomplete() {
         // Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');
         var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
@@ -40,6 +43,7 @@ function initAutocomplete() {
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
+            console.log(place);
             if (!place.geometry) {
               console.log("Returned place contains no geometry");
               return;
@@ -52,12 +56,23 @@ function initAutocomplete() {
               scaledSize: new google.maps.Size(25, 25)
             };
             placeMyID = place.place_id;
-            var contentString = ('<div><strong>' + place.name + '</strong><br>' +
-                            'Place ID: ' + place.place_id + '<br>' +
-                            place.formatted_address + '</div>');
+            var contentString = `
+              <div class="card" >
+                <strong>${place.name}</strong>
+                <a href="${place.website}" target="_blank">${place.website}</a>
+                <div>${place.vicinity}</div>
+                <div class="stars">
+            `;
+
+            for(let i = 1; i < place.rating; i++) {
+              contentString = contentString + '<img src="/images/star.png" width="20px">'
+            }
+
+            contentString = contentString + '</div><a onclick="rate()" class="rate">Valorar</a></div>';
 
             var infowindow = new google.maps.InfoWindow({
-                      content: contentString
+                      content: contentString,
+                      maxWidth: 300
                     });
 
                     var marker = (new google.maps.Marker({
@@ -68,18 +83,16 @@ function initAutocomplete() {
                       place: place.place_id
                     }));
 
-                    console.log(place);
-
                     myPlaceId= place.place_id;
                     myName = place.name;
                     myAddress = place.formatted_address;
-                    myGeometry = place.geometry.location;
-                    myWebiste = place.website;
+                    myType = place.types[0];
+                    myWebsite = place.website;
 
                     document.getElementById("idRest").value = myPlaceId;
                     document.getElementById("nameRest").value = myName;
                     document.getElementById("addressRest").value = myAddress;
-                    document.getElementById("geometryRest").value = myGeometry;
+                    document.getElementById("typeRest").value = myType;
                     document.getElementById("webRest").value = myWebsite;
 
                     marker.addListener('click', function() {
