@@ -2,7 +2,8 @@ var express = require('express');
 const passport = require('passport');
 const User = require('../models/User');
 const Restaurant = require('../models/Restaurant');
-
+const multer = require('multer');
+const uploader = multer({dest:'./public/uploads'});
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 var router = express.Router();
 
@@ -15,7 +16,38 @@ router.get("/", ensureLoggedIn(), (req, res) => {
   });
 });
 
-router.get('/:id/edit', (req, res, next) => {
+function checkComplete() {
+  console.log("ENTRO EN MIDDLE");
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.complete === false) {
+      return next();
+    } else {
+      res.redirect('/')
+    }
+  }
+}
+
+router.get('/completeprofile', checkComplete(), (req, res) => {
+  res.render('profile/complete-profile', {user: req.user});
+});
+
+router.post('/completeprofile', ensureLoggedIn(), uploader.single('photo'), checkComplete(), (req, res) => {
+  let completeProfile = {
+      fullName: req.body.fullName,
+      age: req.body.age,
+      gender: req.body.gender,
+      location: req.body.location,
+      photo: req.file.filename,
+    };
+    User.findByIdAndUpdate(req.user._id, updates, (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      res.redirect('/profile/complete-profile');
+    });
+  });
+
+router.get('/edit', ensureLoggedIn(), (req, res, next) => {
   User.findById(req.user._id, (err, user) => {
     console.log(req.user._id);
     console.log(req.user);
@@ -27,14 +59,16 @@ router.get('/:id/edit', (req, res, next) => {
       });
     });
 
-router.post('/:id/edit', (req, res, next) => {
+router.post('/edit', ensureLoggedIn(), uploader.single('photo'), (req, res, next) => {
   let updates = {
-       name: req.body.username,
-       email: req.body.email
-       // pic_path: `../uploads/${req.file.filename}`,
-       // pic_name: req.file.originalname
+       username: req.body.username,
+       fullName: req.body.fullName,
+       email: req.body.email,
+       age: req.body.age,
+       gender: req.body.gender,
+       location: req.body.location,
+       photo: req.file.filename,
      };
-     console.log(updates)
 
      User.findByIdAndUpdate(req.user._id, updates, (err, result) => {
        if (err) {

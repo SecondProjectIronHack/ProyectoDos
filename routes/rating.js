@@ -5,22 +5,28 @@ const Restaurant = require('../models/Restaurant');
 const Rating = require('../models/Rating')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 var router = express.Router();
+const multer = require('multer');
+const uploader = multer({dest:'./public/uploads'});
 
 //FALTA UN ensureLoggedIn EN TODAS!!
 //FALTA el formulario de Rating
-//Falta el detalle de cada Rating! 
+//Falta el detalle de cada Rating!
 
 router.get('/', (req, res, next) => {
-  res.render('/ratings/rate-form');
+  res.render('rating/rate-form');
 });
 
-router.post('/', (req, res, render) => {
-    const {food, price, ambience, comment, customerService} = req.body;
-    const newRating = new Rating({
+router.post('/', uploader.single('photo'), (req, res, render) => {
+  const {food, price, ambience, comment, customerService, occasion} = req.body;
+  const newRating = new Rating({
+      food, price, ambience, comment, customerService, occasion,
       restaurant: req.restaurant.name,
-      creator: req.user.name,
+      creator: req.user.username,
       photo: req.file.filename,
     });
+
+    console.log(req.restaurant.name);
+    console.log(req.body);
 
   newRating.save().then(createdRating => {
       res.redirect(`/${createdRating._id}`);

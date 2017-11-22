@@ -3,12 +3,13 @@ const passport = require('passport');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 var router = express.Router();
 
+
 router.get('/signup', ensureLoggedOut(), (req, res, next)  => {
   res.render('auth/signup', { "message": req.flash("error") });
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
-  successRedirect : '/profile',
+  successRedirect : '/auth/login',
   failureRedirect : '/auth/signup',
   failureFlash: true,
   passReqToCallback: true
@@ -19,7 +20,7 @@ router.get('/login', ensureLoggedOut(), (req, res, next) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successReturnToOrRedirect:'/profile',
+  successReturnToOrRedirect:'/profile/completeprofile',
   failureRedirect : '/auth/login',
   failureFlash: true,
   passReqToCallback: true
