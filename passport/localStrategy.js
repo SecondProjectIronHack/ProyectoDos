@@ -3,6 +3,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
+
 passport.use('local-signup', new LocalStrategy({
     passReqToCallback: true
   },
@@ -18,9 +19,9 @@ passport.use('local-signup', new LocalStrategy({
           const { username, email, password } = req.body;
           const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
           const newUser = new User({
-            name: username,
+            username: username,
             email: email,
-            password: hashPass
+            password: hashPass,
           });
             newUser.save(function(err) {
                    if (err)
@@ -34,7 +35,7 @@ passport.use('local-signup', new LocalStrategy({
 
   passport.use('local-login', new LocalStrategy((username, password, next) => {
     console.log(username);
-    User.findOne({ 'name' : username }, (err, user) => {
+    User.findOne({ 'username' : username }, (err, user) => {
       if (err) {
 
         return next(err);

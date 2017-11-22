@@ -12,11 +12,15 @@
       App
     </header>
     <main class="main">
-      <%- body %>
+      <%- body-%>
     </main>
     <footer class="footer">
     </footer>
 
-    <script src="/javascripts/googlePlaces.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE3wzxrBK16zMljFyGq294DTotwbl85TY&libraries=places&callback=initAutocomplete"
+    async defer></script>
+    <script  src="/javascripts/googlePlaces.js"></script>
+    
 </body>
 </html>

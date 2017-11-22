@@ -1,20 +1,42 @@
-<form action="/profile/:id/edit" method="POST">
-  <div>
-    <label for="username"> Name </label>
-    <input type="text" name="username" id="name"
-      value="<%=user.name%>">
-  </div>
 
-  <div>
-    <label for="email"> Email </label>
-    <input type="email" name="email" id="email"
-      value="<%=user.email%>">
-  </div>
+  <form action="/profile/edit"  enctype="multipart/form-data" method="post">
+    <div>
+      <label> Username </label>
+      <input type="text" name="username" id="user-input"
+        placeholder="<%=user.name%>">
+    </div>
+    <div>
+      <label> Email </label>
+      <input type="text" name="email" id="user-input"
+        placeholder="<%=user.email%>">
+    </div>
+    <div>
+      <label> Full Name </label>
+      <input type="text" name="fullname" id="user-input"
+        placeholder="Full Name">
+    </div>
 
-  <div>
-    <label for="password"> Password </label>
-    <input type="password" name="password" id="password"
-      value="<%=user.password%>">
-  </div>
+    <div>
+      <label> Gender </label>
+      <label> Female </label>
+      <input type="checkbox" name="fullname" id="user-input"
+        placeholder="Full">
+        <label> Male </label>
+        <input type="checkbox" name="fullname" id="user-input"
+          placeholder="Full">
+    </div>
 
-<button type="submit" name="action" value="Submit">Update</button>
+    <div>
+      <label for="user-input"> Birth Date </label>
+      <input type="date" name="birthday" id="user-input"
+        placeholder="Full">
+    </div>
+
+
+    <div>
+      <label for="file">Show us your pretty face</label>
+     <input type="file" id="file" name="photo">
+    </div>
+
+    <button> Update your Info </button>
+  </form>
