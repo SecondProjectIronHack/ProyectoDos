@@ -21,38 +21,30 @@ router.get('/:id', ensureLoggedIn(), (req, res, next) => {
 });
 
 router.post('/add/:id', ensureLoggedIn(), uploader.single('photo'), (req, res, next) => {
-  let newRating = {};
-  console.log("REST", req.params.id);
-  console.log("USER", req.user.username);
-  console.log("USERNAME", req.body.user);
-  if (req.file !== undefined){
-  const {food, price, ambience, comment, customerService, occasion, creator} = req.body;
-    newRating = new Rating({
-      food, price, ambience, comment, customerService, occasion,
-      restaurant: req.params.id,
-      pic_name: req.file.originalname,
-      pic_path: `../uploads/${req.file.filename}`,
+
+  let newRating = new Rating(Object.assign(req.body, {
+    creator: req.user._id,
+    restaurant: req.params.id,
+    pic_name: req.file ? req.file.originalname : null,
+    pic_path: req.file ? `../uploads/${req.file.filename}` : null,
+  }));
+
+  newRating.save().then( createdRating => {
+    Restaurant.findById(req.params.id, (err, restaurant) => {
+      if(err) { return next(); }
+      restaurant.visited = true;
+      restaurant.save((err, updRestaurant) => {
+        res.redirect("/");
+      });
     });
-}else {
-  const {food, price, ambience, comment, customerService, occasion} = req.body;
-    newRating = new Rating({
-      food, price, ambience, comment, customerService, occasion,
-      restaurant: req.params.id,
-      creator: req.body.user,
-  });
-}
-
-console.log("AQUI", newRating);
-
-  newRating.save()
-  .then(createdRating => {
-    console.log(createdRating);
-    res.redirect("/");
-    })
-  .catch(e => res.render('error', {
+  })
+  .catch(e => {
+    return res.render('error', {
       error: 'Something went wrong'
-    }));
+    });
   });
+
+});
 
 router.get('/:id', ensureLoggedIn(), (req, res, next) => {
   Rating.findById(req.params.id)

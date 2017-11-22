@@ -1,25 +1,33 @@
-<h1><%= restaurant %></h1>
-<h1><%= user %></h1>
+<h1><%= restaurant.name %></h1>
 <form action="/rating/add/<%= restaurant._id %>" enctype="multipart/form-data" method="post">
 
-  <label for="food">Food</label>
-  <input type="number" name="food"/>
-  <br>
-  <label for="price">Price</label>
-  <input type="number" name="price"/>
-  <br>
+  <div>
+    <label for="food">Food</label>
+    <p class="range-field">
+      <input type="range" id="food" name="food" min="0" step="1" max="10" />
+    </p>
+  </div>
 
-   <label for="ambience">Ambience</label>
-   <input type="number" name="ambience"/>
-   <br>
+  <div>
+    <label for="price">Price</label>
+    <p class="range-field">
+      <input type="range" id="price" name="price" min="0" step="1" max="10" />
+    </p>
+  </div>
 
-   <label for="customerService">Customer Service</label>
-   <input type="number" name="customerService"/>
-   <br
+  <div>
+    <label for="ambience">Ambience</label>
+    <p class="range-field">
+      <input type="range" id="ambience" name="ambience" min="0" step="1" max="10" />
+    </p>
+  </div>
 
-   <label for="customerService">Customer Service</label>
-   <input type="text" name="user" value="<%=user.username%>" />
-   <br
+  <div>
+    <label for="customerService">Customer Service</label>
+    <p class="range-field">
+      <input type="range" id="customerService" name="customerService" min="0" step="1" max="10" />
+    </p>
+  </div>
 
    <label for="comment">comment</label>
    <input type="text" name="comment"/>
@@ -34,5 +42,5 @@
     <input type="file" id="file" name="photo">
    </div>
 
-<button type="submit" >Upload Rating</button>
+<button class="btn" type="submit" >Upload Rating</button>
 </form>

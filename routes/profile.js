@@ -2,6 +2,7 @@ var express = require('express');
 const passport = require('passport');
 const User = require('../models/User');
 const Restaurant = require('../models/Restaurant');
+
 const multer = require('multer');
 const uploader = multer({dest: './public/uploads'});
 const {ensureLoggedIn,ensureLoggedOut} = require('connect-ensure-login');
@@ -9,11 +10,12 @@ var router = express.Router();
 
 router.get("/", ensureLoggedIn(), (req, res) => {
   const id = req.user.id;
+  console.log(id);
   Restaurant.find({creator : id}, (err, restaurants) => {
-    console.log(restaurants);
+    restaurants = restaurants.reverse();
     res.render("profile/dashboard", {
       user: req.user,
-      restaurants: restaurants
+      restaurants: restaurants.reverse()
     });
   });
 });
@@ -21,7 +23,6 @@ router.get("/", ensureLoggedIn(), (req, res) => {
 
 router.get('/edit', ensureLoggedIn(), (req, res, next) => {
   User.findById(req.user._id, (err, user) => {
-    console.log("USER", user)
     if (err) {
       console.log(err);
     }
@@ -69,20 +70,20 @@ router.get('/logout', ensureLoggedIn(), (req, res) => {
   req.logout();
   res.redirect('/');
 });
-// function checkComplete() {
-//   console.log("ENTRO EN MIDDLE");
-//   return function(req, res, next) {
-//     if (req.isAuthenticated() && req.user.complete === false) {
-//       return next();
-//     } else {
-//       res.redirect('/')
-//     }
-//   }
-// }
-//
-// router.get('/completeprofile', checkComplete(), (req, res) => {
-//   res.render('profile/complete-profile', {user: req.user});
-// });
+
+function checkComplete() {
+  return function(req, res, next) {
+    if (req.isAuthenticated() && req.user.complete === false) {
+      return next();
+    } else {
+      res.redirect('/');
+    }
+  };
+}
+
+router.get('/completeprofile', checkComplete(), (req, res) => {
+  res.render('profile/complete-profile', {user: req.user});
+});
 //
 // router.post('/completeprofile', ensureLoggedIn(), uploader.single('photo'), checkComplete(), (req, res) => {
 //   console.log(req.file)

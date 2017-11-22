@@ -5,9 +5,19 @@ const googleMapsClient = require('@google/maps').createClient({
   Promise: Promise
 });
 
+function isLogged() {
+  return function(req, res, next) {
+    if (req.isAuthenticated()) {
+      res.redirect('/profile');
+    } else {
+      return next();
+    }
+  };
+}
+
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index');
+router.get('/', isLogged(), (req, res, next) => {
+    res.render('index');
 });
 
 // router.get('/map', (req, res, next) => {
