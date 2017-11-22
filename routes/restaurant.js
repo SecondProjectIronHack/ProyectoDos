@@ -5,9 +5,6 @@ const Restaurant = require('../models/Restaurant')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 var router = express.Router();
 
-//FALTA UN ensureLoggedIn EN TODAS!!
-//No funciona el primer get no se por que--> dice que la vista no existe
-//Hay que revisar el modelo de restaurante a ver si nos queremos traer mas informacioN!
 
 router.get('/search', ensureLoggedIn(), (req, res, next) => {
   res.render('restaurants/search-restaurant');
@@ -30,5 +27,17 @@ router.post('/search', ensureLoggedIn(), (req, res, next) => {
     error: 'Something went wrong'
   }));
 });
+
+//Delete restaurant
+
+router.post('/:id/delete', ensureLoggedIn(), (req, res, next) => {
+  const id = req.params.id;
+  Restaurant.findByIdAndRemove(id, (err, product) => {
+    if (err){ return next(err); }
+    return res.redirect('/profile');
+  });
+
+});
+
 
 module.exports = router;

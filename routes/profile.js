@@ -6,6 +6,12 @@ const Restaurant = require('../models/Restaurant');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 var router = express.Router();
 
+router.get('/logout', ensureLoggedIn(), (req,res)=>{
+  req.logout();
+  res.redirect('/');
+});
+
+
 router.get("/", ensureLoggedIn(), (req, res) => {
   Restaurant.find({}, (err, restaurants) => {
     res.render("profile/dashboard", {

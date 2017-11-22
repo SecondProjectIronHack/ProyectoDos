@@ -4,10 +4,13 @@ var myAddress;
 var myWebiste;
 var myGeometry;
 
+function rate() {
+  document.querySelector('#formRest').submit();
+}
 function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13,
+          center: {lat: 40.4893538, lng: -3.6827461},
+          zoom: 10,
           mapTypeId: 'roadmap'
         });
 
@@ -78,6 +81,8 @@ function initAutocomplete() {
                       position: place.geometry.location,
                       place: place.place_id
                     }));
+
+
 
                     myPlaceId= place.place_id;
                     myName = place.name;

@@ -121,3 +121,11 @@ ul {
   display: flex;
   justify-content: space-between;
 }
+
+#dltButton {
+  padding: 10px;
+  background: #333;
+  color: white;
+  border-radius: 2px;
+  text-decoration: none;
+}

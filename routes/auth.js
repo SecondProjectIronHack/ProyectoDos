@@ -25,9 +25,6 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
   passReqToCallback: true
 }));
 
-router.get('/logout', ensureLoggedIn(), (req,res)=>{
-  req.logout();
-  res.redirect('/');
-});
+
 
 module.exports = router;
