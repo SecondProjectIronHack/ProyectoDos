@@ -53,6 +53,8 @@ app.use(layouts);
 app.use('/dist/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
 app.use('/dist/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/dist/materialize', express.static(path.join(__dirname, 'node_modules/materialize-css/dist')));
+
 
 require('./passport')(app);
 

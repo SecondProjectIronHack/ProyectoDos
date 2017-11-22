@@ -8,7 +8,6 @@ const ratingSchema = new Schema({
   price: {type: Number,required: true},
   ambience: {type: Number,required: true},
   customerService: {type: Number,required: true},
-  customerService: {type: String,required: true},
   comment: String,
   pic_path: String,
   pic_name: String,

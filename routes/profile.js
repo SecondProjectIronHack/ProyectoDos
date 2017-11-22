@@ -8,7 +8,9 @@ const {ensureLoggedIn,ensureLoggedOut} = require('connect-ensure-login');
 var router = express.Router();
 
 router.get("/", ensureLoggedIn(), (req, res) => {
-  Restaurant.find({}, (err, restaurants) => {
+  const id = req.user.id;
+  Restaurant.find({creator : id}, (err, restaurants) => {
+    console.log(restaurants);
     res.render("profile/dashboard", {
       user: req.user,
       restaurants: restaurants
