@@ -11,24 +11,21 @@ router.get('/search', ensureLoggedIn(), (req, res, next) => {
 });
 
 router.post('/search', ensureLoggedIn(), (req, res, next) => {
+
   const newRestaurant = new Restaurant({
     name: req.body.name,
     address: req.body.address,
     website: req.body.website,
     type: req.body.type,
     rating: req.body.rating,
+    creator: req.user._id
   });
-  console.log(newRestaurant);
-  console.log(req.body);
   newRestaurant.save().then(createdRestaurant => {
-    // res.redirect(`/${createdRestaurant._id}`);
     res.redirect('/profile');
   }).catch(e => res.render('restaurants/search-restaurant', {
     error: 'Something went wrong'
   }));
 });
-
-//Delete restaurant
 
 router.post('/:id/delete', ensureLoggedIn(), (req, res, next) => {
   const id = req.params.id;
@@ -36,7 +33,6 @@ router.post('/:id/delete', ensureLoggedIn(), (req, res, next) => {
     if (err){ return next(err); }
     return res.redirect('/profile');
   });
-
 });
 
 

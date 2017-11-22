@@ -20,7 +20,7 @@ router.get('/login', ensureLoggedOut(), (req, res, next) => {
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successReturnToOrRedirect:'/profile/completeprofile',
+  successReturnToOrRedirect:'/profile',
   failureRedirect : '/auth/login',
   failureFlash: true,
   passReqToCallback: true

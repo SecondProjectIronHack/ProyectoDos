@@ -3,86 +3,100 @@ const passport = require('passport');
 const User = require('../models/User');
 const Restaurant = require('../models/Restaurant');
 const multer = require('multer');
-const uploader = multer({dest:'./public/uploads'});
-const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const uploader = multer({dest: './public/uploads'});
+const {ensureLoggedIn,ensureLoggedOut} = require('connect-ensure-login');
 var router = express.Router();
-
-router.get('/logout', ensureLoggedIn(), (req,res)=>{
-  req.logout();
-  res.redirect('/');
-});
-
 
 router.get("/", ensureLoggedIn(), (req, res) => {
   Restaurant.find({}, (err, restaurants) => {
     res.render("profile/dashboard", {
       user: req.user,
       restaurants: restaurants
-     });
-  });
-});
-
-function checkComplete() {
-  console.log("ENTRO EN MIDDLE");
-  return function(req, res, next) {
-    if (req.isAuthenticated() && req.user.complete === false) {
-      return next();
-    } else {
-      res.redirect('/')
-    }
-  }
-}
-
-router.get('/completeprofile', checkComplete(), (req, res) => {
-  res.render('profile/complete-profile', {user: req.user});
-});
-
-router.post('/completeprofile', ensureLoggedIn(), uploader.single('photo'), checkComplete(), (req, res) => {
-  let completeProfile = {
-      fullName: req.body.fullName,
-      age: req.body.age,
-      gender: req.body.gender,
-      location: req.body.location,
-      photo: req.file.filename,
-    };
-    User.findByIdAndUpdate(req.user._id, updates, (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      res.redirect('/profile/complete-profile');
     });
   });
+});
+
 
 router.get('/edit', ensureLoggedIn(), (req, res, next) => {
   User.findById(req.user._id, (err, user) => {
-    console.log(req.user._id);
-    console.log(req.user);
-
-      if (err) {
-        console.log(err);
-      }
-      res.render('profile/edit-profile', {user: user});
-      });
+    console.log("USER", user)
+    if (err) {
+      console.log(err);
+    }
+    res.render('profile/edit-profile', {
+      user: user
     });
+  });
+});
 
 router.post('/edit', ensureLoggedIn(), uploader.single('photo'), (req, res, next) => {
-  let updates = {
-       username: req.body.username,
-       fullName: req.body.fullName,
-       email: req.body.email,
-       age: req.body.age,
-       gender: req.body.gender,
-       location: req.body.location,
-       photo: req.file.filename,
-     };
+  let updates = {};
+  if (req.file !== undefined){
+    updates = {
+      username: req.body.username,
+      fullName: req.body.fullName,
+      email: req.body.email,
+      age: req.body.age,
+      gender: req.body.gender,
+      location: req.body.location,
+      pic_name: req.file.originalname,
+      pic_path: `../uploads/${req.file.filename}`,
+      complete: true
+    };
+  } else {
+    updates = {
+      username: req.body.username,
+      fullName: req.body.fullName,
+      email: req.body.email,
+      age: req.body.age,
+      gender: req.body.gender,
+      location: req.body.location,
+      complete: true
+    };
+  }
 
-     User.findByIdAndUpdate(req.user._id, updates, (err, result) => {
-       if (err) {
-         console.log(err);
-       }
-       res.redirect('/profile');
-     });
-   });
+  User.findByIdAndUpdate(req.user._id, updates, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    res.redirect('/profile');
+  });
+});
 
-
+router.get('/logout', ensureLoggedIn(), (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+// function checkComplete() {
+//   console.log("ENTRO EN MIDDLE");
+//   return function(req, res, next) {
+//     if (req.isAuthenticated() && req.user.complete === false) {
+//       return next();
+//     } else {
+//       res.redirect('/')
+//     }
+//   }
+// }
+//
+// router.get('/completeprofile', checkComplete(), (req, res) => {
+//   res.render('profile/complete-profile', {user: req.user});
+// });
+//
+// router.post('/completeprofile', ensureLoggedIn(), uploader.single('photo'), checkComplete(), (req, res) => {
+//   console.log(req.file)
+//   let completeProfile = {
+//       fullName: req.body.fullName,
+//       age: req.body.age,
+//       gender: req.body.gender,
+//       location: req.body.location,
+//       complete: true,
+//       photo: req.file.filename,
+//     };
+//     User.findByIdAndUpdate(req.user._id, updates, (err, result) => {
+//       if (err) {
+//         console.log(err);
+//       }
+//       res.redirect('/profile/complete-profile');
+//     });
+//   });
 module.exports = router;

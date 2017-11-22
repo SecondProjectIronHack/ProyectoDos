@@ -8,25 +8,39 @@ var router = express.Router();
 const multer = require('multer');
 const uploader = multer({dest:'./public/uploads'});
 
-//FALTA UN ensureLoggedIn EN TODAS!!
-//FALTA el formulario de Rating
 //Falta el detalle de cada Rating!
 
-router.get('/', (req, res, next) => {
-  res.render('rating/rate-form');
+router.get('/:id', ensureLoggedIn(), (req, res, next) => {
+  console.log(req.params.id);
+  const id = req.params.id;
+  var restaurant = {};
+  var creator =
+  Restaurant.findById(id, function (err, restaurant) {
+    console.log(restaurant)
+    res.render('rating/rate-form', {restaurant : restaurant});
+   } );
 });
 
-router.post('/', uploader.single('photo'), (req, res, render) => {
+router.post('/', ensureLoggedIn(), uploader.single('photo'), (req, res, render) => {
+  let torate = {};
+  if (req.file !== undefined){
   const {food, price, ambience, comment, customerService, occasion} = req.body;
   const newRating = new Rating({
       food, price, ambience, comment, customerService, occasion,
-      restaurant: req.restaurant.name,
+      restaurant: req.restaurant._id,
       creator: req.user.username,
-      photo: req.file.filename,
+      pic_name: req.file.originalname,
+      pic_path: `../uploads/${req.file.filename}`,
     });
-
-    console.log(req.restaurant.name);
-    console.log(req.body);
+}else {
+  const {food, price, ambience, comment, customerService, occasion} = req.body;
+  const newRating = new Rating({
+      food, price, ambience, comment, customerService, occasion,
+      restaurant: req.restaurant._id,
+      creator: req.user.username,
+  });
+}
+  console.log(req.restaurant);
 
   newRating.save().then(createdRating => {
       res.redirect(`/${createdRating._id}`);
@@ -35,7 +49,7 @@ router.post('/', uploader.single('photo'), (req, res, render) => {
     }));
   });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', ensureLoggedIn(), (req, res, next) => {
   Rating.findById(req.params.id)
           .populate('creator')
           .populate('restaurant')

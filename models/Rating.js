@@ -1,7 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-
-//Los timestamps no se por que no funcionan
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const ratingSchema = new Schema({
   creator: {type: Schema.Types.ObjectId, ref: 'User', required: true},
@@ -12,12 +10,10 @@ const ratingSchema = new Schema({
   customerService: {type: Number,required: true},
   customerService: {type: String,required: true},
   comment: String,
-  photo: String
-  // timestamps: {
-  //   createdAt: 'created_at',
-  //   updatedAt: 'updated_at'
-  // }
-})
+  pic_path: String,
+  pic_name: String,
+  time : { type : Date, default: Date.now }
+});
 
-const Rating = mongoose.model('Rating', ratingSchema)
-module.exports = Rating
+const Rating = mongoose.model('Rating', ratingSchema);
+module.exports = Rating;

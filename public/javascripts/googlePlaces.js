@@ -67,7 +67,7 @@ function initAutocomplete() {
               contentString = contentString + '<img src="/images/star.png" width="20px">'
             }
 
-            contentString = contentString + '</div><a onclick="rate()" class="rate">Valorar</a></div>';
+            contentString = contentString + '</div><a onclick="rate()" class="rate">Add to wanna go</a></div>';
 
             var infowindow = new google.maps.InfoWindow({
                       content: contentString,
