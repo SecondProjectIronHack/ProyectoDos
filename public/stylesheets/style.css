@@ -13,6 +13,54 @@ a {
   width: 100%;
 }
 
+.nav-wrapper {
+  background-color: #00BAB8
+}
+.logsign {
+  border-radius:15px;
+  background-color: #00BAB8;
+  width: 90px;
+  height: 60px;
+  color: white;
+  text-decoration: none;
+}
+.signlog {
+  display: inline-block;
+  padding-left: 85px;
+  padding-top: 80px;
+}
+
+.index {
+  background-image: url("../images/food.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 650px;
+  display: inline-block;
+}
+
+.index a{
+  color: white;
+}
+
+.placelist {
+  margin-top: 100px;
+  background-color: white;
+  margin-right: 30px;
+  margin-left: 30px;
+  opacity: 0.8;
+  border-radius: 5px;
+}
+
+.index h1 {
+  color: #00BAB8;
+  text-align: center;
+  text-decoration-style: double;
+}
+
+button {
+  border-radius: 15px;
+  background-color: #00BAB8;
+}
 .controls {
         background-color: #fff;
         border-radius: 2px;
@@ -55,20 +103,6 @@ a {
   background: #333;
   min-height: 80px;
   width: 100%;
-}
-.header {
-  background: #6f1c1c;
-  color: white;
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 10px;
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-  padding: 10px;
 }
 
 .footer {
