@@ -6,10 +6,6 @@
   <div class="col s12">PROFILE PHOTO</div>
   <div class="col s12"><img></h3>
   </div>
-  <div class="col s6">
-    <%= %>wanna visit</div>
-  <div class="col s6">
-    <%= %>visited</div>
 </div>
 </div>
 
@@ -34,7 +30,6 @@
       <div class="col s12 m6">
         <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
-<h1><%= i %></h1>
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4"><%= restaurants[i].name %><i class="material-icons right">more_vert</i></span>
@@ -44,14 +39,18 @@
                 <p>
                   <%= restaurants[i].address %>
                 </p>
-                <p>
-                  <%= restaurants[i].website%>
+                <p><a href="<%= restaurants[i].website%>">Website</a>
                 </p>
                 <form action="/restaurant/<%= restaurants[i]._id %>/delete" method="POST">
                   <button id="dltButton" type="submit"><i class="material-icons">delete</i></button>
-                  <i class="material-icons">favorite</i>
                 </form>
-                <p><a href="#">This is a link</a></p>
+                <% if(restaurants[i].visited){ %>
+                  <div class="row">
+                  <div class="col s4"><p><i class="material-icons left md-24">local_dining</i><%= rating[i].food%></p></div>
+                  <div class="col s4"><p><i class="material-icons left">euro_symbol</i><%= rating[i].price%></p></div>
+                  <div class="col s4"><p><i class="material-icons left">local_bar</i><%= rating[i].ambience%></p></div>
+                </div>
+                <% } %>
           </div>
 
           <div class="card-reveal">
@@ -66,11 +65,8 @@
               <p><i class="material-icons left">sentiment_very_satisfied</i>Customer Service: <%= rating[i].customerService%></p>
               <p><i class="material-icons left">wc</i>Occasion: <%= rating[i].occasion%></p>
               <p><i class="material-icons left">insert_comment</i>Comment: <%= rating[i].Comment%></p>
-              
-            <% } %>
-            <ul>
 
-            </ul>
+            <% } %>
 
           </div>
         </div>
