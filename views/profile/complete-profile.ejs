@@ -1,75 +1,45 @@
-
-
-<div class="container">
-  <h1 class=" fa fa-user center-align">Complete your profile</h1><br>
-  <h3>We also hate formalities, but please it only takes few seconds!</h3>
-  <p>
-    <%= user.username %>
-  </p>
-  <p>
-    <%= user.email %>
-  </p>
-  <form action="/profile/completeprofile" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-      <label>Full Name</label>
-      <input type="text" class="form-control" name="fullName">
-    </div>
-    <div class="form-group">
-      <label>Birth Date</label>
-      <input type="text" class="form-control" name="email">
-    </div>
-    <div class="col-sm-4">
-
-      <div class="file-field input-field">
-        <div class="btn">
-          <span>Show us your pretty face</span>
-          <input id="avatar-1" name="avatar-1" type="file" class="file-loading" required>
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="center-btn">
-        <button class="btn waves-effect waves-light" type="submit" name="action" value="Submit">ACTUALIZAR
-          <i class="material-icons right">send</i>
-        </button>
-        <br></br>
-      </div>
-    </div>
-    <input id="complete" type="text" name="complete" visibility="hidden">
-
-  </form>
-</div>
-</div>
-</div>
-
-<div class="row">
-  <div class="input-field col s12">
-    <label for="gender">Gender</label>
-    <div class="input-field col s6">
-      <input type="checkbox" id="test5" />
-      <label for="test5">Female</label>
-    </div>
-    <div class="input-field col s6">
-      <input type="checkbox" id="test6" checked="checked" />
-      <label for="test6">Male</label>
-    </div>
+<form action="/profile"  enctype="multipart/form-data" method="post">
+  <div>
+    <label> Username </label>
+    <input type="text" name="username" id="user-input"
+      value="<%=user.username%>">
   </div>
-</div>
-
-<div class="row">
-  <div class="input-field col s12">
-    <label for="birthday">Birth Date</label>
-    <input id="birthday" type="date" class="validate" name="birthday">
+  <br>
+  <div>
+    <label> Email </label>
+    <input type="text" name="email" id="user-input"
+      value="<%=user.email%>">
   </div>
-</div>
+  <br>
+  <div>
+    <label> Full Name </label>
+    <input type="text" name="fullname" id="user-input"
+      placeholder="Full Name">
+  </div>
+<br>
+  <div>
+    <!-- There is something wrong with the selector of gender because it only allows you to be female -->
+    <p>
+    <input type="checkbox" name="gender" id="test5" />
+    <label for="test5">Female</label>
+    </p>
+    <p>
+    <input type="checkbox" name="gender" id="test5" />
+    <label for="test5">Male</label>
+    </p>
+  </div>
+<br>
+  <div>
+    <label>Birth Date</label>
+    <input type="text" class="datepicker" name="birthday">
+  </div>
+<br>
 
-
-</div>
-</div>
-
-<button><a href="/profile">Done!</a></button>
-<button><a href="/profile">Not now!</a></button>
-</div>
+  <div>
+    <label for="file">Show us your pretty face</label>
+   <input type="file" id="file" name="photo">
+  </div>
+  <br><br>
+  <button><a class="waves-effect waves-light btn update-btn">Go to Profile</a></button>
+  <button><a class="waves-effect waves-light btn update-btn" href="/profile">Not now!</a></button>
+</form>
