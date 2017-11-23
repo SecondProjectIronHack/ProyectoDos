@@ -1,11 +1,28 @@
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+}
+
+.main {
+  padding: 6px !important;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1 {
+  font-family: 'Old Standard TT', serif;
+}
+
+h3 {
+  font-family: 'Quicksand', sans-serif;
+
+}
+label {
+  font-size: 20px;
 }
 
 #map {
@@ -13,6 +30,9 @@ a {
   width: 100%;
 }
 
+.btn{
+  background-color: #16CFA7 !important;
+}
 .controls {
         background-color: #fff;
         border-radius: 2px;

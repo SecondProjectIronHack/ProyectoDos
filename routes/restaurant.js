@@ -12,6 +12,7 @@ router.get('/search', ensureLoggedIn(), (req, res, next) => {
 
 router.post('/search', ensureLoggedIn(), (req, res, next) => {
 
+
   const newRestaurant = new Restaurant({
     name: req.body.name,
     address: req.body.address,

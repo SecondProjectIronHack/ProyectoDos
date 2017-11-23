@@ -15,7 +15,6 @@ router.get('/:id', ensureLoggedIn(), (req, res, next) => {
   const id = req.params.id;
   var restaurant = {};
   Restaurant.findById(id, function (err, restaurant) {
-    console.log(restaurant);
     res.render('rating/rate-form', {restaurant : restaurant});
    } );
 });
@@ -30,7 +29,6 @@ router.post('/add/:id', ensureLoggedIn(), uploader.single('photo'), (req, res, n
   }));
 
   newRating.save().then( createdRating => {
-    console.log(createdRating);
     Restaurant.findById(req.params.id, (err, restaurant) => {
       if(err) { return next(); }
       restaurant.visited = true;
@@ -53,7 +51,6 @@ router.get('/:id', ensureLoggedIn(), (req, res, next) => {
           .populate('creator')
           .populate('restaurant')
           .then( rating => {
-            console.log(restaurant.restaurant.name);
             res.render('profile/dashboard',{rating});
           })
           .catch(e => next(e));

@@ -18,6 +18,7 @@ const ratingRoute = require('./routes/rating');
 const flash = require('connect-flash');
 
 const dbURL = process.env.mongoDB;
+console.log(dbURL);
 mongoose.connect(dbURL).then(() => {
   debug(`Connected to ${dbURL}`);
 });

@@ -97,6 +97,8 @@ function initAutocomplete() {
                     marker.addListener('click', function() {
                       infowindow.open(map, marker);
                     });
+                    console.log(place);
+
 
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
