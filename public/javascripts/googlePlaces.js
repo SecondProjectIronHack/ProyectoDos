@@ -82,8 +82,6 @@ function initAutocomplete() {
                       place: place.place_id
                     }));
 
-
-
                     myPlaceId= place.place_id;
                     myName = place.name;
                     myAddress = place.formatted_address;
