@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -16,7 +17,7 @@ const profileRoute = require('./routes/profile');
 const ratingRoute = require('./routes/rating');
 const flash = require('connect-flash');
 
-const dbURL = "mongodb://localhost/awesome";
+const dbURL = process.env.mongoDB;
 mongoose.connect(dbURL).then(() => {
   debug(`Connected to ${dbURL}`);
 });

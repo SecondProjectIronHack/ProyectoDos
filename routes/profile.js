@@ -131,10 +131,11 @@ function checkComplete() {
   };
 }
 
-router.get('/completeprofile', checkComplete(), (req, res) => {
-  res.render('profile/complete-profile', {user: req.user});
-});
+// router.get('/completeprofile', checkComplete(), (req, res) => {
+//   res.render('profile/complete-profile', {user: req.user});
+// });
 //
+// //
 // router.post('/completeprofile', ensureLoggedIn(), uploader.single('photo'), checkComplete(), (req, res) => {
 //   console.log(req.file)
 //   let completeProfile = {
