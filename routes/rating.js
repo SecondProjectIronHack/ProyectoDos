@@ -30,9 +30,11 @@ router.post('/add/:id', ensureLoggedIn(), uploader.single('photo'), (req, res, n
   }));
 
   newRating.save().then( createdRating => {
+    console.log(createdRating);
     Restaurant.findById(req.params.id, (err, restaurant) => {
       if(err) { return next(); }
       restaurant.visited = true;
+      restaurant.rating = createdRating._id;
       restaurant.save((err, updRestaurant) => {
         res.redirect("/");
       });

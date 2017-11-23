@@ -3,40 +3,46 @@
     <div>
       <label> Username </label>
       <input type="text" name="username" id="user-input"
-        value="<%=user.name%>">
+        value="<%=user.username%>">
     </div>
+    <br>
     <div>
       <label> Email </label>
       <input type="text" name="email" id="user-input"
         value="<%=user.email%>">
     </div>
+    <br>
     <div>
       <label> Full Name </label>
       <input type="text" name="fullname" id="user-input"
         placeholder="Full Name">
     </div>
-
+<br>
     <div>
-      <label> Gender </label>
-      <label> Female </label>
-      <input type="checkbox" name="fullname" id="user-input"
-        placeholder="Full">
-        <label> Male </label>
-        <input type="checkbox" name="fullname" id="user-input"
-          placeholder="Full">
+      <!-- There is something wrong with the selector of gender because it only allows you to be female -->
+      <p>
+      <input type="checkbox" name="gender" id="test5" />
+      <label for="test5">Female</label>
+      </p>
+      <p>
+      <input type="checkbox" name="gender" id="test5" />
+      <label for="test5">Male</label>
+      </p>
     </div>
-
+<br>
     <div>
-      <label for="user-input"> Birth Date </label>
-      <input type="date" name="birthday" id="user-input"
-        placeholder="Full">
+      <label>Birth Date</label>
+      <input type="text" class="datepicker" name="birthday">
     </div>
-
+<br>
 
     <div>
       <label for="file">Show us your pretty face</label>
      <input type="file" id="file" name="photo">
     </div>
+    <br><br>
+    <button><a class="waves-effect waves-light btn update-btn">Update</a></button>
+    <button><a class="waves-effect waves-light btn update-btn" href="/profile/logout">Log Out</a></button>
 
-    <button> Update your Info </button>
+
   </form>

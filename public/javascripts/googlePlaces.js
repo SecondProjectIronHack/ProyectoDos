@@ -83,7 +83,7 @@ function initAutocomplete() {
                     }));
 
 
-
+                    console.log(place);
                     myPlaceId= place.place_id;
                     myName = place.name;
                     myAddress = place.formatted_address;

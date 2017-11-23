@@ -1,40 +1,81 @@
-Private page
-<% if (user) { %>
-  <div>
-    <a href="/">Index</a>
+<div class="row">
+  <div class="col s6">
+    <h3 class="profile-name"><%=user.username%></h3></div>
+  <div class="col s6">
+    <h3><i class="material-icons icon-settings">settings</i></h3></div>
+  <div class="col s12">PROFILE PHOTO</div>
+  <div class="col s12"><img></h3>
   </div>
-<% } %>
-
-<h1>Hey there <%=user.username%>!</h1>
-<div class="container">
-  <input id="idRest" type="text" name="" value="">
-
-  <a class="btn" href="profile/edit/">Edit Profile</a>
-
+  <div class="col s6">
+    <%= %>wanna visit</div>
+  <div class="col s6">
+    <%= %>visited</div>
 </div>
-<ul>
-<% for(var i = 0; i < restaurants.length; i++) { %>
-  <div class="row">
-   <div class="col s12 m6">
-     <div class="card">
-       <div class="card-image">
-         <img src="images/sample-1.jpg">
-         <span class="card-title"><%= restaurants[i].name %></span>
-         <% if (!restaurants[i].visited) { %>
-           <a href="/rating/<%= restaurants[i]._id %>" class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">rate_review</i></a>
-         <% } %>
-       </div>
-       <div class="card-content">
-         <p><%= restaurants[i].address %></p>
-         <p><%= restaurants[i].website%></p>
-         <form action="/restaurant/<%= restaurants[i]._id %>/delete" method="POST">
-           <button id="dltButton" type="submit"><i class="material-icons">delete</i>Delete</button>
-         </form>
-       </div>
-     </div>
-   </div>
- </div>
+</div>
 
-<% } %>
+<div class="row">
+  <div class="col s4">
+    <a class="waves-effect waves-light btn search-menu" href="/profile">ALL</a>
+  </div>
+
+  <div class="col s4">
+    <a class="waves-effect waves-light btn search-menu" href="/profile/wannavisit">WANNA VISIT</a>
+  </div>
+
+  <div class="col s4">
+    <a class="waves-effect waves-light btn search-menu" href="/profile/visited" >VISITED</a>
+  </div>
+</div>
+
+<ul>
+  <% for(var i = 0; i < restaurants.length; i++) { %>
+
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+<h1><%= i %></h1>
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4"><%= restaurants[i].name %><i class="material-icons right">more_vert</i></span>
+            <% if (!restaurants[i].visited) { %>
+              <a href="/rating/<%= restaurants[i]._id %>" class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">rate_review</i></a>
+              <% } %>
+                <p>
+                  <%= restaurants[i].address %>
+                </p>
+                <p>
+                  <%= restaurants[i].website%>
+                </p>
+                <form action="/restaurant/<%= restaurants[i]._id %>/delete" method="POST">
+                  <button id="dltButton" type="submit"><i class="material-icons">delete</i></button>
+                  <i class="material-icons">favorite</i>
+                </form>
+                <p><a href="#">This is a link</a></p>
+          </div>
+
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Rating<i class="material-icons right">close</i></span>
+            <% if(restaurants[i].visited){ %>
+              <img src="<%= rating[i].pic_path%>" alt="" width= 300%>
+              <br>
+
+              <p><i class="material-icons left">local_dining</i>Food: <%= rating[i].food%></p>
+              <p><i class="material-icons left">euro_symbol</i>Price: <%= rating[i].price%></p>
+              <p><i class="material-icons left">local_bar</i>Ambience: <%= rating[i].ambience%></p>
+              <p><i class="material-icons left">sentiment_very_satisfied</i>Customer Service: <%= rating[i].customerService%></p>
+              <p><i class="material-icons left">wc</i>Occasion: <%= rating[i].occasion%></p>
+              <p><i class="material-icons left">insert_comment</i>Comment: <%= rating[i].Comment%></p>
+              
+            <% } %>
+            <ul>
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% } %>
 </ul>
-<br>
