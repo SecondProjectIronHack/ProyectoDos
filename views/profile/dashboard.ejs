@@ -1,10 +1,12 @@
+<div class="dashboard">
+</div>
 <div class="row menu-myplaces">
   <div class="col s12 user-name">
     <h3><%=user.username%></h3></div>
 </div>
 </div>
 
-<div class="row menu-toolbar">
+<div class="row">
   <div class="col s4 no-padding-button">
     <a href="/profile"><button class="menu-button">ALL</button></a>
   </div>
@@ -28,36 +30,38 @@
             <% } %>
 
           <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4"><%= restaurants[i].name %><i class="material-icons right">more_vert</i></span>
-            <% if (!restaurants[i].visited) { %>
-              <a href="/rating/<%= restaurants[i]._id %>" class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">rate_review</i></a>
-              <% } %>
+            <span class="card-title activator grey-text text-darken-4"><%= restaurants[i].name %><% if (restaurants[i].visited) { %><button class="see-rating-btn"><i class="material-icons right">more_vert</i></button><% } %></span>
+
                 <p>
                   <%= restaurants[i].address %>
                 </p>
                 <p><a href="<%= restaurants[i].website%>">Website</a>
                 </p>
+                <br>
+                <% if (!restaurants[i].visited) { %>
+                  <a href="/rating/<%= restaurants[i]._id %>" class="waves-effect waves-light btn rate-btn"><i class="material-icons">rate_review</i> Rate </a>
+                  <% } %>
 
                 <% if(restaurants[i].visited){ %>
-                  <div class="row front-icon-bar">
-                  <div class="col s4"><p><i class="material-icons left front-icons">local_dining</i><%= rating[i].food%></p></div>
-                  <div class="col s4"><p><i class="material-icons left front-icons">euro_symbol</i><%= rating[i].price%></p></div>
-                  <div class="col s4"><p><i class="material-icons left front-icons">local_bar</i><%= rating[i].ambience%></p></div>
+                  <div class="row rating-front-div">
+                  <div class="col s4"><p><i class="material-icons left front-icons">local_dining</i><p class="icon-text-menu"><%= rating[i].food%></p></p></div>
+                  <div class="col s4"><p><i class="material-icons left front-icons">euro_symbol</i><p class="icon-text-menu"><%= rating[i].price%></p></p></div>
+                  <div class="col s4"><p><i class="material-icons left front-icons">local_bar</i><p class="icon-text-menu"><%= rating[i].ambience%></p></p></div>
                 </div>
                 <% } %>
           </div>
-          </div>
+
 
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">Rating<i class="material-icons right">close</i></span>
             <% if(restaurants[i].visited){ %>
               <br>
-              <p><i class="material-icons left">local_dining</i>Food: <%= rating[i].food%></p>
-              <p><i class="material-icons left">euro_symbol</i>Price: <%= rating[i].price%></p>
-              <p><i class="material-icons left">local_bar</i>Ambience: <%= rating[i].ambience%></p>
-              <p><i class="material-icons left">sentiment_very_satisfied</i>Customer Service: <%= rating[i].customerService%></p>
-              <p><i class="material-icons left">wc</i>Occasion: <%= rating[i].occasion%></p>
-              <p><i class="material-icons left">insert_comment</i>Comment: <%= rating[i].Comment%></p>
+              <p><i class="material-icons left">local_dining</i><b>Food: </b><%= rating[i].food%></p>
+              <p><i class="material-icons left">euro_symbol</i><b>Price: </b><%= rating[i].price%></p>
+              <p><i class="material-icons left">local_bar</i><b>Ambience: </b><%= rating[i].ambience%></p>
+              <p><i class="material-icons left">sentiment_very_satisfied</i><b>Customer Service: </b><%= rating[i].customerService%></p>
+              <p><i class="material-icons left">wc</i><b>Occasion: </b><%= rating[i].occasion%></p>
+              <p><i class="material-icons left">insert_comment</i><b>Comment:</b> <%= rating[i].comment%></p>
 
               <form action="/restaurant/<%= restaurants[i]._id %>/delete" method="POST">
                 <button id="dltButton" type="submit"><i class="material-icons">delete</i>Delete</button>
@@ -68,6 +72,5 @@
         </div>
       </div>
     </div>
-
     <% } %>
-</ul>
+</div>

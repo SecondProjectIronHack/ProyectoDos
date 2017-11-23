@@ -1,46 +1,48 @@
-<h1><%= restaurant.name %></h1>
-<form action="/rating/add/<%= restaurant._id %>" enctype="multipart/form-data" method="post">
+<div class="rateform-title">
+<h1 ><%= restaurant.name %></h1>
+
+<form class = "rate-form" action="/rating/add/<%= restaurant._id %>" enctype="multipart/form-data" method="post">
 
   <div>
-    <label for="food">Food</label>
+    <label for="food"><i class="material-icons left">local_dining</i>Food</label>
     <p class="range-field">
       <input type="range" id="test5" name="food" min="0" step="1" max="5" />
     </p>
   </div>
 
   <div>
-    <label for="price">Price</label>
+    <label for="price"><i class="material-icons left">euro_symbol</i>Price</label>
     <p class="range-field">
       <input type="range" id="price" name="price" min="0" step="1" max="100" />
     </p>
   </div>
 
   <div>
-    <label for="ambience">Ambience</label>
+    <label for="ambience"><i class="material-icons left">local_bar</i>Ambience</label>
     <p class="range-field">
       <input type="range" id="ambience" name="ambience" min="0" step="1" max="5" />
     </p>
   </div>
 
   <div>
-    <label for="customerService">Customer Service</label>
+    <label for="customerService"><i class="material-icons left">sentiment_very_satisfied</i>Customer Service</label>
     <p class="range-field">
       <input type="range" id="customerService" name="customerService" min="0" step="1" max="5" />
     </p>
   </div>
 
-   <label for="comment">comment</label>
-   <input type="text" name="comment"/>
-   <br>
-
-   <label for="occasion">Occasion</label>
+   <label for="occasion"><i class="material-icons left">wc</i>Occasion</label>
    <input type="text" name="occasion"/>
+   <br>
+   <label for="comment"><i class="material-icons left">insert_comment</i>Comment</label>
+   <input type="text" name="comment"/>
    <br>
 
    <div>
      <label for="file">Show us your pretty face</label>
-    <input type="file" id="file" name="photo">
+     <i class="material-icons left photo-icon">add_a_photo</i><input class="upload-pic-input"type="file" id="file" name="photo">
    </div>
 
 <button class="btn" type="submit" >Upload Rating</button>
 </form>
+</div>

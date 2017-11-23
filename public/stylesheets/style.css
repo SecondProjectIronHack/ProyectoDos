@@ -9,12 +9,16 @@ body {
   padding: 6px !important;
 }
 
-a{
-  color:grey;
+.main .rate-form {
+  padding: 14px;
 }
 
-h3 {
-  font-family: 'Quicksand', sans-serif;
+ .main .dashboard{
+  padding:0px !important;
+}
+
+a{
+  color:grey;
 }
 
 label {
@@ -31,7 +35,7 @@ label {
 }
 
 .nav-wrapper {
-  background-color: #00BAB8
+  background-color: #13CFB7;
 }
 
 .logsign {
@@ -115,7 +119,7 @@ label {
 }
 
 .card-image {
-  background: #333;
+  background: white;
   min-height: 80px;
   width: 100%;
 }
@@ -203,19 +207,11 @@ ul {
   line-height: 20% !important;
 }
 
-.icon-settings{
-  margin-bottom: 5%;
-}
 .search-menu{
-  border: 1px solid grey;
   width: 100%;
   text-align: center;
 }
 
-
-a:link .menu-button{
-  text-decoration: none;
-}
 
 .menu-button {
   width: 100%;
@@ -223,8 +219,10 @@ a:link .menu-button{
   padding-top: 5%;
   padding-bottom:5%;
   background-color: white;
-  border: 1px solid #16CFA7;
+  border-top: 1px solid #16CFA7;
+  border-bottom: 1px solid #16CFA7;
   border-radius: 0px;
+
 }
 
 .no-padding-button{
@@ -237,8 +235,42 @@ a:link .menu-button{
 
 h3 {
   line-height: 20%;
+    font-family: 'Quicksand', sans-serif;
+}
+.icon-text-menu {
+  font-size: 1.2em;
 }
 
-.front-icon-bar{
+.rate-btn{
+  width: 30%;
+  margin-left: 33%;
+  text-align: center;
+  height: 40px;
+  font-size: 1em;
+  padding:0px;
+}
 
+.rate-btn i {
+  font-size: 1.5em;
+}
+
+input .upload-pic-input{
+font-family: 'Quicksand', sans-serif;
+color: #DAE0E0;
+}
+
+.rateform-title h1{
+  text-align: center;
+}
+
+.material-icons .rateform-title{
+  font-size: 30px;
+}
+
+.see-rating-btn {
+  border-radius: 60%;
+  width: 30%;
+  margin-left: 10%;
+  background-color: #16CFA7;
+  color:white;
 }
