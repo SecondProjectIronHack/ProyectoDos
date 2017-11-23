@@ -10,14 +10,65 @@ var router = express.Router();
 
 router.get("/", ensureLoggedIn(), (req, res) => {
   const id = req.user.id;
-  console.log(id);
-  Restaurant.find({creator : id}, (err, restaurants) => {
-    res.render("profile/dashboard", {
-      user: req.user,
-      restaurants: restaurants.reverse()
+
+  Restaurant.
+    find({creator : id}).
+    populate('rating').
+    exec( (err,restaurant) => {
+      const ratio = [];
+      restaurant.forEach(r => {
+        ratio.push(r.rating);
+      });
+      if (err) return handleError(err);
+      console.log(restaurant);
+      console.log(ratio);
+      res.render("profile/dashboard", {
+        user: req.user,
+        restaurants: restaurant.reverse(),
+        rating : ratio.reverse()
+      });
     });
   });
-});
+
+router.get('/visited',ensureLoggedIn(), (req, res) => {
+  const id = req.user.id;
+
+  Restaurant.
+  find({visited : true}).
+  populate('rating').
+  exec( (err,restaurant) => {
+    const ratio = [];
+    restaurant.forEach(r => {
+      ratio.push(r.rating);
+    });
+    if (err) return handleError(err);
+    res.render("profile/dashboard", {
+      user: req.user,
+      restaurants: restaurant.reverse(),
+      rating : ratio.reverse()
+    });
+  });
+} );
+
+router.get('/wannavisit',ensureLoggedIn(), (req, res) => {
+  const id = req.user.id;
+
+  Restaurant.
+  find({visited : false}).
+  populate('rating').
+  exec( (err,restaurant) => {
+    const ratio = [];
+    restaurant.forEach(r => {
+      ratio.push(r.rating);
+    });
+    if (err) return handleError(err);
+    res.render("profile/dashboard", {
+      user: req.user,
+      restaurants: restaurant.reverse(),
+      rating : ratio.reverse()
+    });
+  });
+} );
 
 
 router.get('/edit', ensureLoggedIn(), (req, res, next) => {

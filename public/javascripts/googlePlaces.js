@@ -64,7 +64,7 @@ function initAutocomplete() {
             `;
 
             for(let i = 1; i < place.rating; i++) {
-              contentString = contentString + '<img src="/images/star.png" width="20px">'
+              contentString = contentString + '<img src="/images/star.png" width="20px">';
             }
 
             contentString = contentString + '</div><a onclick="rate()" class="rate">Add to wanna go</a></div>';

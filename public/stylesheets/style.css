@@ -146,7 +146,15 @@ ul {
   margin-right: 5px;
 }
 
-.nav-wrapper {
-  height: 50px;
+.profile-name{
+  margin-left: 0%;
+}
 
+.icon-settings{
+  margin-bottom: 5%;
+}
+.search-menu{
+  border: 1px solid grey;
+  width: 100%;
+  text-align: center;
 }
