@@ -9,7 +9,7 @@ router.get('/signup', ensureLoggedOut(), (req, res, next)  => {
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
-  successRedirect : '/auth/login',
+  successRedirect : '/profile/completeprofile',
   failureRedirect : '/auth/signup',
   failureFlash: true,
   passReqToCallback: true

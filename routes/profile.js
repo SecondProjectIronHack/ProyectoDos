@@ -12,7 +12,6 @@ router.get("/", ensureLoggedIn(), (req, res) => {
   const id = req.user.id;
   console.log(id);
   Restaurant.find({creator : id}, (err, restaurants) => {
-    restaurants = restaurants.reverse();
     res.render("profile/dashboard", {
       user: req.user,
       restaurants: restaurants.reverse()

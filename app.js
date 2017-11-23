@@ -47,7 +47,7 @@ app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection
   })
-}))
+}));
 
 app.use(layouts);
 app.use('/dist/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));

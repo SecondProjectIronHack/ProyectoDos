@@ -1,7 +1,7 @@
 var express = require('express');
 const passport = require('passport');
 const User = require('../models/User');
-const Restaurant = require('../models/Restaurant')
+const Restaurant = require('../models/Restaurant');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 var router = express.Router();
 
