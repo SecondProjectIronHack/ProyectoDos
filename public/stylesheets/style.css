@@ -9,18 +9,14 @@ body {
   padding: 6px !important;
 }
 
-a {
-  color: #00B7FF;
-}
-
-h1 {
-  font-family: 'Old Standard TT', serif;
+a{
+  color:grey;
 }
 
 h3 {
   font-family: 'Quicksand', sans-serif;
-
 }
+
 label {
   font-size: 20px;
 }
@@ -30,18 +26,19 @@ label {
   width: 100%;
 }
 
-<<<<<<< HEAD
 .btn{
   background-color: #16CFA7 !important;
-=======
+}
+
 .nav-wrapper {
   background-color: #00BAB8
 }
+
 .logsign {
-  border-radius:15px;
+  border-radius:25px;
   background-color: #00BAB8;
   width: 90px;
-  height: 60px;
+  height: auto;
   color: white;
   text-decoration: none;
 }
@@ -78,11 +75,7 @@ label {
   text-decoration-style: double;
 }
 
-button {
-  border-radius: 15px;
-  background-color: #00BAB8;
->>>>>>> fdf9706aef81b2b8b483e3b09e3ab15eb9008809
-}
+
 .controls {
         background-color: #fff;
         border-radius: 2px;
@@ -188,22 +181,26 @@ ul {
 }
 
 #dltButton {
+  margin-left: 25%
   padding: 10px;
-  background: #333;
+  width: auto;
+  height: 20% !important;
+  background: #16CFA7;
   color: white;
-  border-radius: 2px;
+  border-radius: 20px;
   text-decoration: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 10px 0 0;
 }
-#dltButton i {
-  margin-right: 5px;
-}
 
-.profile-name{
-  margin-left: 0%;
+
+.user-name{
+  font-size: 1em;
+  text-align: center;
+  height: 20%;
+  line-height: 20% !important;
 }
 
 .icon-settings{
@@ -215,6 +212,33 @@ ul {
   text-align: center;
 }
 
-.user-name{
-  text-align: center;
+
+a:link .menu-button{
+  text-decoration: none;
+}
+
+.menu-button {
+  width: 100%;
+  height: auto;
+  padding-top: 5%;
+  padding-bottom:5%;
+  background-color: white;
+  border: 1px solid #16CFA7;
+  border-radius: 0px;
+}
+
+.no-padding-button{
+  padding:0px !important;
+}
+
+.front-icons{
+  font-size: 30px !important;
+}
+
+h3 {
+  line-height: 20%;
+}
+
+.front-icon-bar{
+
 }
