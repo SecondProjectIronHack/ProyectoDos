@@ -1,4 +1,5 @@
-<h2> Sign Up </h2>
+<div class="signup">
+  <h1> Sign Up </h1>
 <% if (typeof message != "undefined") { %>
    <div class="error-message"><%= message %></div>
  <% } %>
@@ -21,16 +22,6 @@
       placeholder="••••••••••••">
   </div>
 
-
-
-  <!-- <div>
-    <h3>Upload your photo</h3>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-      <input type="file" name="photo">
-      <input type="submit" value="Save">
-    </form>
-  </div> -->
-
   <button type="submit">Signup</button>
 </form>
 
@@ -40,3 +31,4 @@
     Log in.
   </a>
 </p>
+</div>
