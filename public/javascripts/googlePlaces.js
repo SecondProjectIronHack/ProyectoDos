@@ -56,10 +56,10 @@ function initAutocomplete() {
             };
             placeMyID = place.place_id;
             var contentString = `
-              <div class="card" >
+              <div class="card infowindow" >
                 <strong>${place.name}</strong>
-                <a href="${place.website}" target="_blank">${place.website}</a>
                 <div>${place.vicinity}</div>
+                <a href="${place.website}" target="_blank">${place.website}</a>
                 <div class="stars">
             `;
 

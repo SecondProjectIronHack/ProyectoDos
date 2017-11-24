@@ -32,9 +32,8 @@ router.get("/", ensureLoggedIn(), (req, res) => {
 
 router.get('/visited',ensureLoggedIn(), (req, res) => {
   const id = req.user.id;
-
   Restaurant.
-  find({visited : true}).
+  find({creator : id, visited : true}).
   populate('rating').
   exec( (err,restaurant) => {
     const ratio = [];
@@ -134,8 +133,8 @@ function checkComplete() {
 // router.get('/completeprofile', checkComplete(), (req, res) => {
 //   res.render('profile/complete-profile', {user: req.user});
 // });
+
 //
-// //
 // router.post('/completeprofile', ensureLoggedIn(), uploader.single('photo'), checkComplete(), (req, res) => {
 //   console.log(req.file)
 //   let completeProfile = {

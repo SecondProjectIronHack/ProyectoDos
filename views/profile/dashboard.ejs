@@ -8,15 +8,15 @@
 
 <div class="row">
   <div class="col s4 no-padding-button">
-    <a href="/profile"><button class="menu-button">ALL</button></a>
+    <a href="/profile"><button class="menu-button">All</button></a>
   </div>
 
   <div class="col s4 no-padding-button">
-    <a href="/profile/wannavisit"><button class="menu-button">WANNA VISIT</button></a>
+    <a href="/profile/wannavisit"><button class="menu-button">Wanna Visit</button></a>
   </div>
 
   <div class="col s4 no-padding-button">
-    <a href="/profile/visited"><button class="menu-button">VISITED</button></a> </div>
+    <a href="/profile/visited"><button class="menu-button">Visited</button></a> </div>
 </div>
 
 <ul>
@@ -41,11 +41,12 @@
                 <% if (!restaurants[i].visited) { %>
 
 
+            
                   <a href="/rating/<%= restaurants[i]._id %>" class="waves-effect waves-light btn rate-btn"><i class="material-icons">rate_review</i> Rate </a>
                   <% } %>
 
                     <% if(restaurants[i].visited){ %>
-                    <div class="blue-box">  
+                    <div class="blue-box">
                       <div class="row rating-front-div">
                         <div class="col s4">
                           <p><i class="material-icons left front-icons">local_dining</i>
@@ -75,8 +76,8 @@
 
 
               <div class="card-reveal">
+                  <% if(restaurants[i].visited){ %>
                 <span class="card-title grey-text text-darken-4">Rating<i class="material-icons right">close</i></span>
-                <% if(restaurants[i].visited){ %>
                   <br>
                   <p><i class="material-icons left">local_dining</i><b>Food: </b>
                     <%= rating[i].food%>
