@@ -5,16 +5,51 @@ body {
   font-size: 15px;
 }
 
-.main {
-  padding: 6px !important;
+#place-h{
+font-size: 4em;
+text-transform: uppercase;
+font-family: 'Francois One', sans-serif;
+color: white;
+
+}
+
+#list-h{
+  font-size: 4em;
+  text-transform: uppercase;
+  font-family: 'Sedgwick Ave', cursive;
+}
+
+h1{
+  font-family: 'Francois One', sans-serif;
+  color:#16CFA7;
 }
 
 .main .rate-form {
   padding: 14px;
 }
 
+ .log-in-div{
+  margin: 5% 5%;
+}
+
+.log-in-div h1{
+  text-align: center;
+}
+
+.signup h1{
+  text-align: center;
+}
+
+.signup{
+  margin: 5% 5%;
+
+}
  .main .dashboard{
   padding:0px !important;
+}
+
+main{
+  padding: 0px !important;
 }
 
 a{
@@ -40,9 +75,11 @@ label {
 
 .logsign {
   border-radius:25px;
+  border-style: none;
   background-color: #00BAB8;
-  width: 90px;
-  height: auto;
+  margin-left: 25%;
+  width: 60%;
+  height: 30%;
   color: white;
   text-decoration: none;
 }
@@ -52,16 +89,25 @@ label {
   padding-top: 80px;
 }
 
-.index {
-  background-image: url("../images/food.jpg");
-  background-size: cover;
-  width: 100%;
-  height: 650px;
-  display: inline-block;
+.index:after{
+  content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/food.jpg");;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .index a{
   color: white;
+}
+
+.index{
+  padding-top:20%;
+  line-height: 1;
 }
 
 .placelist {
@@ -116,12 +162,17 @@ label {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin:1%;
 }
 
 .card-image {
   background: white;
-  min-height: 80px;
+  max-height: 30%;
   width: 100%;
+}
+
+.card-content{
+  padding:0;
 }
 
 .footer {
@@ -273,4 +324,12 @@ color: #DAE0E0;
   margin-left: 10%;
   background-color: #16CFA7;
   color:white;
+}
+
+.blue-box{
+  background-color: #92F5D3;
+  width: 100%;
+  height: 30%;
+  padding-top: 5%;
+  margin-left: 0;
 }

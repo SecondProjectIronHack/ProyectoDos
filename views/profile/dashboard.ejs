@@ -12,11 +12,11 @@
   </div>
 
   <div class="col s4 no-padding-button">
-<a href="/profile/wannavisit"><button class="menu-button">WANNA VISIT</button></a>
+    <a href="/profile/wannavisit"><button class="menu-button">WANNA VISIT</button></a>
   </div>
 
   <div class="col s4 no-padding-button">
-  <a href="/profile/visited"><button class="menu-button">VISITED</button></a>  </div>
+    <a href="/profile/visited"><button class="menu-button">VISITED</button></a> </div>
 </div>
 
 <ul>
@@ -25,12 +25,12 @@
     <div class="row">
       <div class="col s12 m6">
         <div class="card">
-            <% if(restaurants[i].visited){ %>
-          <div class="card-image waves-effect waves-block waves-light"><img src="<%= rating[i].pic_path%>" alt=""></div>
+          <% if(restaurants[i].visited){ %>
+            <div class="card-image waves-effect waves-block waves-light"><img src="<%= rating[i].pic_path%>" alt=""></div>
             <% } %>
 
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4"><%= restaurants[i].name %><% if (restaurants[i].visited) { %><button class="see-rating-btn"><i class="material-icons right">more_vert</i></button><% } %></span>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4"><%= restaurants[i].name %><% if (restaurants[i].visited) { %><i class="material-icons right see-rating">more_vert</i><% } %></span>
 
                 <p>
                   <%= restaurants[i].address %>
@@ -39,38 +39,72 @@
                 </p>
                 <br>
                 <% if (!restaurants[i].visited) { %>
+
+
                   <a href="/rating/<%= restaurants[i]._id %>" class="waves-effect waves-light btn rate-btn"><i class="material-icons">rate_review</i> Rate </a>
                   <% } %>
 
+                    <% if(restaurants[i].visited){ %>
+                    <div class="blue-box">  
+                      <div class="row rating-front-div">
+                        <div class="col s4">
+                          <p><i class="material-icons left front-icons">local_dining</i>
+                            <p class="icon-text-menu">
+                              <%= rating[i].food%>
+                            </p>
+                          </p>
+                        </div>
+                        <div class="col s4">
+                          <p><i class="material-icons left front-icons">euro_symbol</i>
+                            <p class="icon-text-menu">
+                              <%= rating[i].price%>
+                            </p>
+                          </p>
+                        </div>
+                        <div class="col s4">
+                          <p><i class="material-icons left front-icons">local_bar</i>
+                            <p class="icon-text-menu">
+                              <%= rating[i].ambience%>
+                            </p>
+                          </p>
+                        </div>
+                      </div>
+                      <% } %>
+                      </div>
+              </div>
+
+
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Rating<i class="material-icons right">close</i></span>
                 <% if(restaurants[i].visited){ %>
-                  <div class="row rating-front-div">
-                  <div class="col s4"><p><i class="material-icons left front-icons">local_dining</i><p class="icon-text-menu"><%= rating[i].food%></p></p></div>
-                  <div class="col s4"><p><i class="material-icons left front-icons">euro_symbol</i><p class="icon-text-menu"><%= rating[i].price%></p></p></div>
-                  <div class="col s4"><p><i class="material-icons left front-icons">local_bar</i><p class="icon-text-menu"><%= rating[i].ambience%></p></p></div>
-                </div>
-                <% } %>
-          </div>
+                  <br>
+                  <p><i class="material-icons left">local_dining</i><b>Food: </b>
+                    <%= rating[i].food%>
+                  </p>
+                  <p><i class="material-icons left">euro_symbol</i><b>Price: </b>
+                    <%= rating[i].price%>
+                  </p>
+                  <p><i class="material-icons left">local_bar</i><b>Ambience: </b>
+                    <%= rating[i].ambience%>
+                  </p>
+                  <p><i class="material-icons left">sentiment_very_satisfied</i><b>Customer Service: </b>
+                    <%= rating[i].customerService%>
+                  </p>
+                  <p><i class="material-icons left">wc</i><b>Occasion: </b>
+                    <%= rating[i].occasion%>
+                  </p>
+                  <p><i class="material-icons left">insert_comment</i><b>Comment:</b>
+                    <%= rating[i].comment%>
+                  </p>
 
+                  <form action="/restaurant/<%= restaurants[i]._id %>/delete" method="POST">
+                    <button id="dltButton" type="submit"><i class="material-icons">delete</i>Delete</button>
+                  </form>
+                  <% } %>
 
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Rating<i class="material-icons right">close</i></span>
-            <% if(restaurants[i].visited){ %>
-              <br>
-              <p><i class="material-icons left">local_dining</i><b>Food: </b><%= rating[i].food%></p>
-              <p><i class="material-icons left">euro_symbol</i><b>Price: </b><%= rating[i].price%></p>
-              <p><i class="material-icons left">local_bar</i><b>Ambience: </b><%= rating[i].ambience%></p>
-              <p><i class="material-icons left">sentiment_very_satisfied</i><b>Customer Service: </b><%= rating[i].customerService%></p>
-              <p><i class="material-icons left">wc</i><b>Occasion: </b><%= rating[i].occasion%></p>
-              <p><i class="material-icons left">insert_comment</i><b>Comment:</b> <%= rating[i].comment%></p>
-
-              <form action="/restaurant/<%= restaurants[i]._id %>/delete" method="POST">
-                <button id="dltButton" type="submit"><i class="material-icons">delete</i>Delete</button>
-              </form>
-            <% } %>
-
-          </div>
+              </div>
         </div>
       </div>
     </div>
     <% } %>
-</div>
+      </div>
