@@ -30,13 +30,14 @@ label {
   width: 100%;
 }
 
-<<<<<<< HEAD
 .btn{
   background-color: #16CFA7 !important;
-=======
-.nav-wrapper {
-  background-color: #00BAB8
 }
+
+.nav-wrapper {
+  background-color: #00BAB8;
+}
+
 .logsign {
   border-radius:15px;
   background-color: #00BAB8;
@@ -81,8 +82,8 @@ label {
 button {
   border-radius: 15px;
   background-color: #00BAB8;
->>>>>>> fdf9706aef81b2b8b483e3b09e3ab15eb9008809
 }
+
 .controls {
         background-color: #fff;
         border-radius: 2px;
